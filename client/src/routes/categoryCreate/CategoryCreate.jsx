@@ -38,7 +38,7 @@ const CategoryCreate = ({ history }) => {
     return (
         <>
             <div className={styled.page_box}>
-                <div className={styled.page_name}>CATEGORY REGISTER</div>
+                <div className={styled.page_name}>Category Register</div>
                 <div className={styled.category_create_form}>
                     <form className={styled.form} onSubmit={onSubmit}>
                         <table className={styled.table}>
@@ -59,8 +59,8 @@ const CategoryCreate = ({ history }) => {
                 </div>
             </div>
             <div className={styled.page_box}>
-                <div className={styled.page_name}>CATEGORY LIST</div>
-                <table className={styled.table}>
+                <div className={styled.page_name}>Category List</div>
+                <table className={styled.list_table}>
                     <thead></thead>
                     <tbody>
                         {categoryList &&

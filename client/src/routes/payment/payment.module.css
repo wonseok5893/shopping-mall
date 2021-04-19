@@ -1,6 +1,8 @@
 .page_name {
-    font-family: "Spectral", serif;
     color: black;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .payment_container {
@@ -43,12 +45,16 @@
 }
 
 .payment_adress_table td {
-    padding: 0.5rem;
+    padding: 0.3rem;
     text-align: left;
 }
 
 .payment_adress_table th {
-    padding: 0.5rem;
+    width: 75px;
+    padding: 0.3rem;
+    font-size: 13px;
+    font-weight: normal;
+    text-align: left;
 }
 
 .payment_adress_table input {
@@ -77,6 +83,14 @@
     background: black;
     color: #fff;
     border: 1px solid black;
+}
+
+.star {
+    color: #3d89bd;
+    font-size: 10px;
+    vertical-align: top;
+    padding-left: 4px;
+    font-weight: normal;
 }
 
 @media screen and (max-width: 768px) {

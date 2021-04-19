@@ -27,7 +27,7 @@ const Cart = ({ history }) => {
 
     return (
         <>
-            <div className={styled.page_name}>CART</div>
+            <div className={styled.page_name}>Cart</div>
             {cartList && (
                 <div className={styled.productList}>
                     <div className={styled.products}>

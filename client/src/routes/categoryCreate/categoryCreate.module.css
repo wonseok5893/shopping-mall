@@ -4,28 +4,47 @@
 .page_name {
     color: black;
     margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .form {
     text-align: center;
 }
 
-.table {
+.table,
+.list_table {
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid #b2b2b2;
+}
+
+.list_table td {
+    padding: 0.5rem;
+    text-align: center;
+    padding: 0.8rem;
+    border: 1px solid #ececec;
 }
 
 .table td {
     padding: 0.8rem;
-    border: 1px solid #b2b2b2;
+    border: 1px solid #ececec;
     text-align: left;
 }
 
 .table th {
     padding: 1rem;
-    border: 1px solid #b2b2b2;
-    background-color: #f3f3f3;
+    border: 1px solid #ececec;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.table th:first-child,
+.table td:first-child {
+    border-left: 0;
+}
+.table th:last-child,
+.table td:last-child {
+    border-right: 0;
 }
 
 .input_text {

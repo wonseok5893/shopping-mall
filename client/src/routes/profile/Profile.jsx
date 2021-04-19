@@ -45,7 +45,7 @@ const Profile = (props) => {
 
     return (
         <>
-            <div className={styled.page_name}>PROFILE</div>
+            <div className={styled.page_name}>Profile</div>
             <form onSubmit={onSubmit} className={styled.form}>
                 <div className={styled.form_item}>
                     <input type="text" value="010_cm@naver.com" readOnly />

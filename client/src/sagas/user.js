@@ -16,19 +16,20 @@ import {
 } from "../reducers/user";
 
 function logInAPI(data) {
-    // return axios.post("/member/signIn", data);
+    // return axios.post("http://58.228.228.3/member/signIn", data);
     return { token: "sndWEsfsDAFg23SF43" };
 }
 function* logIn(action) {
     try {
         const result = yield call(logInAPI, action.data);
-        console.log(action);
-        console.log(result);
+        console.log(result["headers"]);
         yield put({
             type: LOG_IN_SUCCESS,
             payload: result,
+            // payload: result["headers"]["x-auth-token"],
         });
     } catch (error) {
+        console.log(error);
         yield put({
             type: LOG_IN_FAILURE,
             error: error.response.data,
@@ -37,18 +38,18 @@ function* logIn(action) {
 }
 
 function registerAPI(data) {
-    return axios.post("/member/signUp", data);
+    return axios.post("http://58.228.228.3/member/signUp", data);
 }
 
 function* register(action) {
     try {
         const result = yield call(registerAPI, action.data);
-        console.log(result);
         yield put({
             type: REGISTER_SUCCESS,
             payload: result,
         });
     } catch (error) {
+        console.log(error);
         yield put({
             type: REGISTER_FAILURE,
             /*error: err.response.data*/

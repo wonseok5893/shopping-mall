@@ -26,7 +26,7 @@ const ProductList = ({ history, match }) => {
 
     return (
         <>
-            <div className={styled.page_name}>PRODUCT MANAGEMENT</div>
+            <div className={styled.page_name}>Product List</div>
             <div className={styled.product_management}>
                 <div className={styled.product_list}>
                     <table className={styled.table}>
@@ -44,7 +44,7 @@ const ProductList = ({ history, match }) => {
                             <th>상품사진</th>
                             <th>재고수량</th>
                             <th>가격</th>
-                            <th>edit/delete</th>
+                            <th className={styled.last_th}>수정/삭제</th>
                         </thead>
                         <tbody>
                             {productList &&
@@ -57,7 +57,7 @@ const ProductList = ({ history, match }) => {
                                         </td>
                                         <td>{product.stock}</td>
                                         <td>{product.price}</td>
-                                        <td>
+                                        <td className={styled.last_td}>
                                             <button>수정</button>
                                             <button>삭제</button>
                                         </td>

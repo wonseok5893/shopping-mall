@@ -154,20 +154,34 @@ function* productDetail(action) {
 }
 
 function productCreateAPI(data) {
-    console.log(data);
-    return "성공";
+    const formData = new FormData();
+    formData.append("images", data.images);
+    formData.append("price", data.price);
+    formData.append("description", data.description);
+    formData.append("name", data.name);
+    formData.append("stock", data.stock);
+    formData.append("categoryId", data.categoryId);
+    return axios.post("http://58.228.228.3/admin/product", formData, {
+        headers: {
+            "content-type": "multipart/form-data",
+            "X-AUTH-TOKEN":
+                "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjNAMTIzIiwicm9sZSI6IlJPTEVfQURNSU4iLCJpYXQiOjE2MTg1MTU2MzIsImV4cCI6MTYxODUxNzQzMn0.RxoeJPzzKIAklM9wW4Pirmn88Oea5sTWJmSRuAVd68I",
+        },
+    });
 }
 
 function* productCreate(action) {
     try {
-        yield call(productCreateAPI, action.data);
+        const result = yield call(productCreateAPI, action.data);
+
         yield put({
             type: PRODUCT_CREATE_SUCCESS,
         });
     } catch (error) {
+        console.log(error);
         yield put({
             type: PRODUCT_CREATE_FAILURE,
-            /*error: err.response.data*/
+            error: error,
         });
     }
 }

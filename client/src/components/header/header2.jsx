@@ -48,7 +48,7 @@ const Header = () => {
 
                 {userInfo ? (
                     <li className={styled.dropdown}>
-                        {userInfo.name} ▼
+                        {userInfo.name} ▼z
                         <div className={styled.dropdown_content}>
                             <div className={styled.dropdown_content_item}>
                                 <Link to="/profile">프로필</Link>

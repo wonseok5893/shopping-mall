@@ -18,7 +18,7 @@ const Search = ({ history }) => {
 
     return (
         <>
-            <div className={styled.page_name}>PRODUCT SEARCH...</div>
+            <div className={styled.page_name}>Product Search</div>
             <form onSubmit={onSubmit} className={styled.form}>
                 <input
                     placeholder="제품을 검색하세요..."

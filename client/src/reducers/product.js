@@ -120,13 +120,13 @@ export const cartListRequest = () => {
 
 export const productCreateRequest = (
     name,
-    category,
+    categoryId,
     stock,
     price,
-    photo,
-    discription
+    images,
+    description
 ) => {
-    const data = { name, category, stock, price, photo, discription };
+    const data = { name, categoryId, stock, price, images, description };
     console.log(data);
     return {
         type: PRODUCT_CREATE_REQUEST,
