@@ -9,9 +9,8 @@ import com.project.shoppingmall.exception.DuplicationCategoryNameException;
 import com.project.shoppingmall.exception.NotCategoryExistException;
 import com.project.shoppingmall.repository.CategoryRepository;
 import com.project.shoppingmall.repository.FileRepository;
-import com.project.shoppingmall.repository.ProductRepository;
+import com.project.shoppingmall.repository.product.ProductRepository;
 import com.project.shoppingmall.service.AdminService;
-import com.project.shoppingmall.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -61,7 +60,6 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void saveFile(MultipartFile multipartFile, String relativePath, String newFileName) throws IOException {
         File dest = new File(uploadPath + relativePath + "/" + newFileName);
-        System.out.println(dest.getAbsolutePath());
         multipartFile.transferTo(dest);
     }
 }
