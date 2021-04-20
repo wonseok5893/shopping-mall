@@ -1,10 +1,12 @@
 package com.project.shoppingmall.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.shoppingmall.controller.requestdto.product.RequestProductEnrollInfo;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -21,6 +23,7 @@ public class Product {
     private int price;
     private int stock;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Member admin;
 
@@ -40,6 +43,10 @@ public class Product {
                 .category(category)
                 .admin(admin)
                 .build();
+    }
+
+    public static boolean checkProductProperties(String sortedBy){
+        return Arrays.stream(Product.class.getDeclaredFields()).anyMatch((field -> field.getName().equals(sortedBy)));
     }
 
 }
