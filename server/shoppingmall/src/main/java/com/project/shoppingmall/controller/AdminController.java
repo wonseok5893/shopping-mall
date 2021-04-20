@@ -27,16 +27,16 @@ public class AdminController {
 
     @ApiOperation(value = "카테고리 등록")
     @PostMapping("category")
-    public ResponseEntity enrollCategory(@RequestBody RequestCategoryEnrollInfo enrollInfo) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void enrollCategory(@RequestBody RequestCategoryEnrollInfo enrollInfo) {
         adminService.enrollCategory(enrollInfo);
-        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "상품 등록")
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("product")
-    public ResponseEntity enrollProduct(@RequestPart("images") List<MultipartFile> images, RequestProductEnrollInfo enrollInfo) throws IOException {
+    public void enrollProduct(@RequestPart("images") List<MultipartFile> images, RequestProductEnrollInfo enrollInfo) throws IOException {
         Member admin = (Member)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         adminService.enrollProduct(enrollInfo, admin, images);
-        return new ResponseEntity(HttpStatus.CREATED);
     }
 }
