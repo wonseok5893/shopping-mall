@@ -1,10 +1,7 @@
 package com.project.shoppingmall.domain;
 
 import com.project.shoppingmall.controller.requestdto.category.RequestCategoryEnrollInfo;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "categories")
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Category {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
