@@ -1,7 +1,11 @@
 package com.project.shoppingmall.controller.responsedto.common;
 
+import lombok.Data;
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class ListResult<T> {
     List<T> data;
     CommonResult commonResult;
