@@ -17,17 +17,19 @@ import {
 
 function logInAPI(data) {
     // return axios.post("http://58.228.228.3/member/signIn", data);
-    return { token: "sndWEsfsDAFg23SF43" };
+    return "sndWEsfsDAFg23SF43";
 }
 function* logIn(action) {
     try {
-        const result = yield call(logInAPI, action.data);
-        console.log(result["headers"]);
+        const x_auth_token = yield call(logInAPI, action.data);
+        // console.log(result["headers"]);
         yield put({
             type: LOG_IN_SUCCESS,
-            payload: result,
+            payload: x_auth_token,
             // payload: result["headers"]["x-auth-token"],
         });
+
+        localStorage.setItem("x-auth-token", JSON.stringify(x_auth_token));
     } catch (error) {
         console.log(error);
         yield put({
@@ -75,7 +77,7 @@ function* logOut() {
     }
 }
 
-function loadUserAPI(data) {
+function loadUserAPI(userToken) {
     return {
         name: "현정",
         email: "9999@naver.com",
@@ -89,11 +91,13 @@ function loadUserAPI(data) {
 
 function* loadUser(action) {
     try {
-        const result = yield call(loadUserAPI, action.data);
+        const userInfo = yield call(loadUserAPI, action.data);
         yield put({
             type: LOAD_USER_SUCCESS,
-            payload: result,
+            payload: userInfo,
         });
+
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
     } catch (error) {
         yield put({
             type: LOAD_USER_FAILURE,

@@ -2,17 +2,23 @@ import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "./cart.module.css";
 import {
-    cartListRequest,
     removeFromCartRequest,
+    addToCartRequest,
     paymentProductsRequest,
 } from "../../reducers/product";
 
-const Cart = ({ history }) => {
+const Cart = ({ history, match, location }) => {
     const dispatch = useDispatch();
+    const productId = match.params.id;
+    const quantity = location.search
+        ? Number(location.search.split("=")[1])
+        : 1;
 
     useEffect(() => {
-        dispatch(cartListRequest());
-    }, []);
+        if (productId) {
+            dispatch(addToCartRequest(productId, quantity));
+        }
+    }, [productId, quantity]);
 
     const { cartList } = useSelector((state) => state.product);
 

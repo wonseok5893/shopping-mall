@@ -5,7 +5,7 @@ import { productListRequest } from "../../reducers/product";
 
 const ProductList = ({ history, match }) => {
     const dispatch = useDispatch();
-    const { userInfo } = useSelector((state) => state.user);
+    const { userInfo, userToken } = useSelector((state) => state.user);
     const { productList } = useSelector((state) => state.product);
     const [category, setCategory] = useState("");
 
@@ -14,7 +14,7 @@ const ProductList = ({ history, match }) => {
     });
 
     useEffect(() => {
-        if (!userInfo) {
+        if (!userInfo || !userToken) {
             history.push("/login");
             return;
         }

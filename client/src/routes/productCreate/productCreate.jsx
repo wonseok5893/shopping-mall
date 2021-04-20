@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ProductCreate = ({ history }) => {
     const dispatch = useDispatch();
-    const { userInfo } = useSelector((state) => state.user);
+    const { userInfo, userToken } = useSelector((state) => state.user);
     const [name, setName] = useState("");
     const [category, setCategory] = useState("outer");
     const [stock, setStock] = useState("");
@@ -69,7 +69,7 @@ const ProductCreate = ({ history }) => {
     );
 
     useEffect(() => {
-        if (!userInfo) {
+        if (!userInfo || !userToken) {
             history.push("/login");
             return;
         }

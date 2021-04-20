@@ -1,3 +1,7 @@
+const cartListFromStorage = localStorage.getItem("cartList")
+    ? JSON.parse(localStorage.getItem("cartList"))
+    : [];
+
 export const initialState = {
     productLoading: false, // 상품 리스트 가져오기 시도 중
     productDone: false,
@@ -9,7 +13,7 @@ export const initialState = {
     productDetailError: null,
     productInfo: null,
 
-    cartList: null, // 장바구니 정보
+    cartList: cartListFromStorage, // 장바구니 정보
 
     cartListLoading: false, // 장바구니 리스트 가져오기 시도중
     cartListDone: false,
@@ -104,8 +108,8 @@ export const productDetailRequest = (id) => {
     };
 };
 
-export const addToCartRequest = (id = "", qty = "") => {
-    const data = { id, qty };
+export const addToCartRequest = (id = "", quantity = "") => {
+    const data = { id, quantity };
     return {
         type: CART_ADD_REQUEST,
         data,
@@ -231,11 +235,27 @@ const reducer = (state = initialState, action) => {
                 cartAddError: null,
             };
         case CART_ADD_SUCCESS:
-            return {
-                ...state,
-                cartAddlLoading: false,
-                cartAddlDone: true,
-            };
+            const cartItem = action.payload;
+            const existItem = state.cartList.find((c) => c.id === cartItem.id);
+
+            // 장바구니에 같은 상품이 있다면
+            if (existItem) {
+                return {
+                    ...state,
+                    cartAddlLoading: false,
+                    cartAddlDone: true,
+                    cartList: state.cartList.map((c) =>
+                        c.id === existItem.id ? cartItem : c
+                    ),
+                };
+            } else {
+                return {
+                    ...state,
+                    cartAddlLoading: false,
+                    cartAddlDone: true,
+                    cartList: [cartItem, ...state.cartList],
+                };
+            }
         case CART_ADD_FAILURE:
             return {
                 ...state,

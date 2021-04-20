@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Payment = ({ history }) => {
     const { paymentProducts } = useSelector((state) => state.product);
-    const { userInfo } = useSelector((state) => state.user);
+    const { userInfo, userToken } = useSelector((state) => state.user);
     useEffect(() => {
-        if (!userInfo) {
+        if (!userInfo || !userToken) {
             history.push("/login");
             return;
         }

@@ -1,4 +1,4 @@
-import { all, fork, put, takeLatest, call } from "redux-saga/effects";
+import { all, fork, put, takeLatest, call, select } from "redux-saga/effects";
 import axios from "axios";
 import {
     PRODUCT_LIST_REQUEST,
@@ -187,15 +187,73 @@ function* productCreate(action) {
 }
 
 function addToCartAPI(data) {
-    return "성공";
+    const item = data.id;
+    const list = [
+        {
+            id: 1,
+            src:
+                "https://image.cosstores.com/static/0/8/0/27/A1/hnm40A1270804_01_0947046_001_001_400.jpg",
+            name: "텍스처드 롤 넥 베스트",
+            price: 57500,
+            description: "기모찌입니다",
+            category: "top",
+            stock: "99",
+        },
+        {
+            id: 2,
+            src:
+                "https://image.cosstores.com/static/5/3/4/24/A1/hnm40A1244356_01_0930726_004_001_400.jpg",
+            name: "플리츠 에이라인 울 캐시미어 미니 스커트",
+            price: 60000,
+            description: "기모찌입니다2",
+            category: "outer",
+            stock: "17",
+        },
+        {
+            id: 3,
+            src:
+                "https://image.cosstores.com/static/5/2/7/20/A1/hnm40A1207257_01_0934476_001_001_400.jpg",
+            name: "캐시미어 가디건",
+            price: 145000,
+            description: "기모찌입니다2",
+            category: "pants",
+            stock: "5",
+        },
+
+        {
+            id: 4,
+            src:
+                "https://image.cosstores.com/static/4/7/8/26/A1/hnm40A1268741_01_0961692_003_001_400.jpg",
+            name: "와이드 레그 니티드 쇼츠",
+            price: 67500,
+            description: "기모찌입니다2",
+            category: "skirt",
+            stock: "75",
+        },
+    ];
+
+    return list.find((e) => e.id === Number(item));
 }
 
 function* addToCart(action) {
     try {
-        yield call(addToCartAPI, action.data);
+        const result = yield call(addToCartAPI, action.data);
         yield put({
             type: CART_ADD_SUCCESS,
+            payload: {
+                id: result.id,
+                src: result.src,
+                name: result.name,
+                price: result.price,
+                stock: result.stock,
+                quantity: action.data.quantity,
+            },
         });
+
+        const { product } = yield select();
+        const cartList = product.cartList;
+        console.log(cartList);
+        localStorage.setItem("cartList", JSON.stringify(cartList));
     } catch (error) {
         yield put({
             type: CART_ADD_FAILURE,
