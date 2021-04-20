@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import RightNav from "./rightNav";
+import RightNav from "./rightNav2";
 
 const NavBox = ({ open }) => {
     return (

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
     productDetailRequest,
-    addToCartRequest,
     paymentProductsRequest,
 } from "../../reducers/product";
 
@@ -19,8 +18,7 @@ const ProductDetail = ({ match, history }) => {
     }, [id]);
 
     const onClickAddToCart = useCallback(() => {
-        dispatch(addToCartRequest(id, quantity));
-        history.push("/cart");
+        history.push(`/cart/${id}?quantity=${quantity}`);
     }, []);
 
     const onClickPaymentProducts = useCallback(() => {

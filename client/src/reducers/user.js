@@ -1,3 +1,11 @@
+const userTokenFromStorage = localStorage.getItem("x-auth-token")
+    ? JSON.parse(localStorage.getItem("x-auth-token"))
+    : null;
+
+const userInfoFromStorage = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
+
 export const initialState = {
     // store에서 관리할 유저의 정보
     logInLoading: false, // 로그인 시도 중
@@ -11,9 +19,8 @@ export const initialState = {
     registerLoading: false, // 회원가입 시도 중
     registerDone: false,
     registerError: null,
-
-    userToken: null, // 유저 토큰
-    userInfo: null, // 유저 정보
+    userToken: userTokenFromStorage,
+    userInfo: userInfoFromStorage, // 유저 정보
 
     loadUserLoading: false, // 로그인 후 유저 정보 요청 시도 중
     loadUserDone: false,
@@ -118,7 +125,6 @@ const reducer = (state = initialState, action) => {
                 logOutLoading: false,
                 logOutDone: true,
                 userInfo: null,
-                userToken: null,
             };
         case LOG_OUT_FAILURE:
             return {

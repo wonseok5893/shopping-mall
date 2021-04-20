@@ -1,6 +1,8 @@
 .page_name {
-    font-family: "Spectral", serif;
     color: black;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .transform_text a {

@@ -15,7 +15,6 @@ const LogIn = ({ history, location }) => {
     // 이미 로그인되어 있다면
     useEffect(() => {
         if (userToken) {
-            console.log(userToken);
             history.replace("/");
         }
     }, [userToken, history, location]);

@@ -1,6 +1,8 @@
 .page_name {
     color: black;
     margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .form {
@@ -10,31 +12,39 @@
 .table {
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid #b2b2b2;
+    border: 1px solid #ececec;
+    text-align: left;
+    width: 85%;
 }
 
 .table td {
     padding: 0.8rem;
-    border: 1px solid #b2b2b2;
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+    border-right: 1px solid #ececec;
     text-align: left;
 }
 
 .table th {
+    width: 100px;
     padding: 1rem;
-    border: 1px solid #b2b2b2;
-    background-color: #f3f3f3;
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+    border-left: 1px solid #ececec;
+    font-size: 13px;
+    font-weight: normal;
 }
 
 .input_text {
     height: 30px;
-    width: 400px;
+    width: 50%;
     padding: 10px;
     outline: none;
     border: 1px solid #b2b2b2;
 }
 .input_number {
     height: 30px;
-    width: 150px;
+    width: 30%;
     padding: 10px;
     outline: none;
     border: 1px solid #b2b2b2;
@@ -42,7 +52,7 @@
 
 .textarea_description {
     height: 100px;
-    width: 600px;
+    width: 100%;
     padding: 10px;
     outline: none;
     border: 1px solid #b2b2b2;
@@ -50,7 +60,7 @@
 
 .preview_content {
     margin-top: 0.8rem;
-    width: 400px;
+    width: 100%;
     height: auto;
 }
 
@@ -78,4 +88,14 @@
     background: black;
     color: #fff;
     border: 1px solid black;
+}
+.star {
+    color: #3d89bd;
+    font-size: 10px;
+    vertical-align: top;
+    padding-left: 4px;
+    font-weight: normal;
+}
+
+@media screen and (max-width: 768px) {
 }

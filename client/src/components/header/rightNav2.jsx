@@ -82,6 +82,11 @@ const Ul = styled.ul`
             position: relative;
         }
 
+        .dropdown li {
+            margin: 0 0 20px;
+            text-align: left;
+        }
+
         .dropdown_content {
             display: none;
             position: relative;
@@ -98,6 +103,8 @@ const RightNav = ({ open }) => {
     const [adminProductOpen, setAdminProductOpen] = useState(false);
     const [adminMemberOpen, setAdminMemberOpen] = useState(false);
     const [adminOderOpen, setAdminOderOpen] = useState(false);
+    const [userOpen, setUserOpen] = useState(false);
+
     const { userInfo } = useSelector((state) => state.user);
     const onLogOut = useCallback(() => {
         dispatch(logoutRequestAction());
@@ -118,20 +125,20 @@ const RightNav = ({ open }) => {
             {userInfo ? (
                 <li className="dropdown">
                     MYPAGE
-                    <div className="dropdown_content">
-                        <div className="dropdown_content_item">
+                    <ul className="dropdown_content">
+                        <li className="dropdown_content_item">
                             <Link to="/profile">프로필</Link>
-                        </div>
-                        <div className="dropdown_content_item">
+                        </li>
+                        <li className="dropdown_content_item">
                             <Link to="/orderlist">주문내역</Link>
-                        </div>
-                        <div
+                        </li>
+                        <li
                             className="dropdown_content_item"
                             onClick={onLogOut}
                         >
                             로그아웃
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </li>
             ) : (
                 <li className="nav_menu_item">

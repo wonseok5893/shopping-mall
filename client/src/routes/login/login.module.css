@@ -1,8 +1,9 @@
 .page_name {
     color: black;
     margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 15px;
 }
-
 .transform_text a {
     color: black;
 }

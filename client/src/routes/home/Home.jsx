@@ -10,6 +10,7 @@ const Home = (props) => {
             dispatch(loadUserRequestAction(userToken));
         }
     }, [userToken]);
+
     return <h1>메인</h1>;
 };
 
