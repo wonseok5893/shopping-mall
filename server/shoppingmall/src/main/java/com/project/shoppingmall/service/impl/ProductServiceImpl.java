@@ -20,13 +20,19 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl {
 
     private final ProductRepository productRepository;
+    private final ProductQueryRepository productQueryRepository;
 
-
+    //N+1 문제 발생
     public List<ResponseProduct> findAllByPagingAndSorting(RequestFindAllProducts request) {
         if(!Product.checkProductProperties(request.getSortedBy())) throw new IllegalArgumentException(request.getSortedBy());
         return productRepository.findAll(PageRequest.of(request.getPageNum(), request.getSize(), Sort.by(Sort.Direction.DESC, request.getSortedBy()))).getContent()
                 .stream().map((product -> new ResponseProduct(product))).collect(Collectors.toList());
+    }
 
+    //N+1문제 해결
+    public List<ResponseProduct> findAllByPagingAndSortingV2(RequestFindAllProducts request){
+        // productID를 쫙뽑아오고 난뒤 In( Product1.id,Product2.id....) 로 조회
+        return productQueryRepository.findAllByPagingAndSorting(request);
     }
 
 }

@@ -27,6 +27,15 @@ public class ResponseProduct {
     private ResponseCategory category;
     private List<ResponseFile> imageFiles;
 
+    public ResponseProduct(Long id, String name, String description, int price, int stock, int categoryId, String categoryName) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+        category = new ResponseCategory(categoryId, categoryName);
+    }
+
     public ResponseProduct(Product product) {
         this.id = product.getId();
         this.name = product.getName();
