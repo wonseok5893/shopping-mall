@@ -21,9 +21,8 @@ class CategoryTest {
     CategoryRepository categoryRepository;
     @Test
     void 카테고리등록() {
-        RequestCategoryEnrollInfo requestCategoryEnrollInfo = new RequestCategoryEnrollInfo();
-        requestCategoryEnrollInfo.setName("Outer");
-        Category category = Category.enrollCategory(requestCategoryEnrollInfo);
+
+        Category category = Category.enrollCategory("Outer");
         categoryRepository.save(category);
 
         assertEquals(categoryRepository.countByName("Outer"), 1);

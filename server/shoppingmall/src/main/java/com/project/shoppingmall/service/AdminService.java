@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface AdminService extends ProductService{
 
-    void enrollCategory(RequestCategoryEnrollInfo enrollInfo);
+    void enrollCategory(String name);
 
     boolean isDuplicatedCategory(String name);
 

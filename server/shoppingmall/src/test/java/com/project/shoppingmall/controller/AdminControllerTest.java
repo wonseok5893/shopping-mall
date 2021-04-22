@@ -30,9 +30,8 @@ class AdminControllerTest {
 
     @Test
     void 카테고리_등록() {
-        RequestCategoryEnrollInfo enrollInfo = new RequestCategoryEnrollInfo();
-        enrollInfo.setName("Outer");
-        adminService.enrollCategory(enrollInfo);
+
+        adminService.enrollCategory("Outer");
 
         boolean existCategory = adminService.isDuplicatedCategory("Outer");
 
@@ -41,10 +40,9 @@ class AdminControllerTest {
 
     @Test
     void 카테고리_존재시_실패() {
-        RequestCategoryEnrollInfo enrollInfo = new RequestCategoryEnrollInfo();
-        enrollInfo.setName("Outer");
-        adminService.enrollCategory(enrollInfo);
 
-        assertThrows(DuplicationCategoryNameException.class, () -> adminService.enrollCategory(enrollInfo));
+        adminService.enrollCategory("outer");
+
+        assertThrows(DuplicationCategoryNameException.class, () -> adminService.enrollCategory("outer"));
     }
 }
