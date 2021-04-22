@@ -2,6 +2,7 @@ package com.project.shoppingmall.controller.responsedto.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.shoppingmall.controller.responsedto.category.ResponseCategory;
+import com.project.shoppingmall.controller.responsedto.common.Search;
 import com.project.shoppingmall.controller.responsedto.file.ResponseFile;
 import com.project.shoppingmall.domain.Category;
 import com.project.shoppingmall.domain.File;
@@ -35,7 +36,10 @@ public class ResponseProduct {
         this.stock = stock;
         category = new ResponseCategory(categoryId, categoryName);
     }
-
+    public static List<ResponseProduct> productToResponseProduct(List<Product>products){
+        return products.stream().map((product) -> new ResponseProduct(product.getId(), product.getName(), product.getDescription(), product.getPrice(), product.getStock(), product.getCategory().getId(), product.getCategory().getName()))
+                .collect(Collectors.toList());
+    }
     public ResponseProduct(Product product) {
         this.id = product.getId();
         this.name = product.getName();

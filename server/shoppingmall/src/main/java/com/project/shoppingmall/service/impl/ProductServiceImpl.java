@@ -1,6 +1,6 @@
 package com.project.shoppingmall.service.impl;
 
-import com.project.shoppingmall.controller.requestdto.product.RequestFindAllProducts;
+import com.project.shoppingmall.controller.requestdto.product.RequestFindProducts;
 import com.project.shoppingmall.controller.responsedto.product.ResponseProduct;
 import com.project.shoppingmall.domain.Product;
 import com.project.shoppingmall.repository.product.ProductQueryRepository;
@@ -23,16 +23,23 @@ public class ProductServiceImpl {
     private final ProductQueryRepository productQueryRepository;
 
     //N+1 문제 발생
-    public List<ResponseProduct> findAllByPagingAndSorting(RequestFindAllProducts request) {
-        if(!Product.checkProductProperties(request.getSortedBy())) throw new IllegalArgumentException(request.getSortedBy());
+    public List<ResponseProduct> findAllByPagingAndSorting(RequestFindProducts request) {
+        if (!Product.checkProductProperties(request.getSortedBy()))
+            throw new IllegalArgumentException(request.getSortedBy());
         return productRepository.findAll(PageRequest.of(request.getPageNum(), request.getSize(), Sort.by(Sort.Direction.DESC, request.getSortedBy()))).getContent()
                 .stream().map((product -> new ResponseProduct(product))).collect(Collectors.toList());
     }
 
     //N+1문제 해결
-    public List<ResponseProduct> findAllByPagingAndSortingV2(RequestFindAllProducts request){
+    public List<ResponseProduct> findAllByPagingAndSortingV2(RequestFindProducts request) {
         // productID를 쫙뽑아오고 난뒤 In( Product1.id,Product2.id....) 로 조회
         return productQueryRepository.findAllByPagingAndSorting(request);
     }
 
+    // 모든 검색 Product 한 메소드에서 해결
+    public List<ResponseProduct> findProducts(RequestFindProducts request) {
+        if (request.getCategoryId() == null)
+            return productQueryRepository.findProducts(request);
+        return productQueryRepository.findProductsByCategory(request);
+    }
 }

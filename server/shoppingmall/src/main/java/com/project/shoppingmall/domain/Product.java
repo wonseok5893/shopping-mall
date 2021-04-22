@@ -3,8 +3,11 @@ package com.project.shoppingmall.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.shoppingmall.controller.requestdto.product.RequestProductEnrollInfo;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +35,26 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<File> imageFiles = new ArrayList<>();
+
+
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdDate;
+
+    @LastModifiedDate
+    private LocalDateTime lastModifiedDate;
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public LocalDateTime getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
 
     //상품 등록 메서드
     public static Product enrollProduct(RequestProductEnrollInfo enrollInfo,Member admin,Category category) {
