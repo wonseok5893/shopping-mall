@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,14 +26,14 @@ import java.util.List;
 public class AdminController {
     private final AdminService adminService;
 
-    @ApiOperation(value = "카테고리 등록")
+    @ApiOperation(value = "관리자 카테고리 등록")
     @PostMapping("category")
     @ResponseStatus(HttpStatus.CREATED)
-    public void enrollCategory(@RequestBody RequestCategoryEnrollInfo enrollInfo) {
-        adminService.enrollCategory(enrollInfo);
+    public void enrollCategory(String name) {
+        adminService.enrollCategory(name);
     }
 
-    @ApiOperation(value = "상품 등록")
+    @ApiOperation(value = "관리자 상품 등록")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("product")
     public void enrollProduct(@RequestPart("images") List<MultipartFile> images, RequestProductEnrollInfo enrollInfo) throws IOException {
