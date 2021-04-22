@@ -18,6 +18,7 @@ public class ExceptionAdvice {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected CommonResult commonException(Exception e) {
+        log.error(e.getMessage());
         return CommonResult.getFailResult(e.getMessage());
     }
 
