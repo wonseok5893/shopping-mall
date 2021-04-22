@@ -33,9 +33,9 @@ public class AdminServiceImpl implements AdminService {
     private String uploadPath;
 
     @Transactional
-    public void enrollCategory(RequestCategoryEnrollInfo enrollInfo) {
-        if(isDuplicatedCategory(enrollInfo.getName()))throw new DuplicationCategoryNameException(enrollInfo.getName());
-        Category enrollCategory = Category.enrollCategory(enrollInfo);
+    public void enrollCategory(String name) {
+        if(isDuplicatedCategory(name))throw new DuplicationCategoryNameException(name);
+        Category enrollCategory = Category.enrollCategory(name);
         categoryRepository.save(enrollCategory);
     }
 
