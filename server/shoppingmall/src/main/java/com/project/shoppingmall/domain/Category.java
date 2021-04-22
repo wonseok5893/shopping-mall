@@ -1,9 +1,8 @@
 package com.project.shoppingmall.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.shoppingmall.controller.requestdto.category.RequestCategoryEnrollInfo;
+import com.sun.istack.NotNull;
 import lombok.*;
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import java.util.List;
 public class Category {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotNull
     private String name;
 
     @JsonIgnore
