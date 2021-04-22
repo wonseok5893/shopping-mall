@@ -2,11 +2,14 @@ package com.project.shoppingmall.domain;
 
 import com.project.shoppingmall.controller.requestdto.member.RequestMemberSignUpDto;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -35,6 +38,20 @@ public class Member implements UserDetails {
     @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
     List<Product> myProducts = new ArrayList<>();
 
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdDate;
+
+    @LastModifiedDate
+    private LocalDateTime lastModifiedDate;
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public LocalDateTime getLastModifiedDate() {
+        return lastModifiedDate;
+    }
     public enum Role{
         ROLE_CLIENT, ROLE_ADMIN, DELETED
     }
