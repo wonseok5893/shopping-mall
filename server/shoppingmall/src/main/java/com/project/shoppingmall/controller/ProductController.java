@@ -1,5 +1,6 @@
 package com.project.shoppingmall.controller;
 
+import com.project.shoppingmall.aop.LogExecutionTime;
 import com.project.shoppingmall.controller.requestdto.product.RequestFindProducts;
 import com.project.shoppingmall.controller.responsedto.common.CommonResult;
 import com.project.shoppingmall.controller.responsedto.common.ListResult;
@@ -21,6 +22,7 @@ public class ProductController {
 
     private final ProductServiceImpl productService;
 
+    @LogExecutionTime
     @ApiOperation(value = "상품 조회")
     @GetMapping("")
     public ListResult<ResponseProduct> findProductsByPagingAndSorting(@RequestParam(value = "searchingBy",required = false,defaultValue = "") String searchingBy,
